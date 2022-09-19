@@ -1,0 +1,46 @@
+ORG 100
+
+input	/100 tomar valor de usuario
+storeI ADDRESS / 101 guardar dato en ADDRESS
+add SUM/102 sumar el valor de suma
+store SUM/103 guardar suma
+load ADDRESS/104 cargar el valor de ADDRESS
+add ONE/105 ir al siguiente valor, o casilla para llenar
+store ADDRESS/106 guardar ADDRESS
+load COUNT/107 cargar cuenta
+add ONE/108 sumar 1 a cuenta
+store COUNT/109 guardar el valor
+subt LAST/10A differencia con last, siendo cincuenta
+skipcond 000/10B si la cuenta es igual a 50, sacar el promedio
+jump MEAN/10C ir a bloque MEAN
+jump 100/10D ir a pedir input
+MEAN, load SUM/10E cargar la suma total
+subt LAST/10F quitarle 50 al valor, para realizar una división
+store SUM/110 guardar el valor de suma
+load PROM/111 cargar promedio
+add ONE/112 aumentar el promedio por cada vez que se reste 50
+store PROM/113 guardar promedio
+load SUM/114 cargar suma para comparar
+skipcond 000/115 si al quitarle 50, la suma es mayor a cero, hacer el proceso de nuevo
+jump MEAN/116 regresar a MEAN
+load PROM/117 cargar el promedio
+subt ONE/118 redondear hacia abajo el promedio quitándole 1
+output/119 mostrar promedio
+
+RESET, load FIRSTADDRESS/11A cargar el valor inicial de ADDRESS
+store ADDRESS/11B guardarlo como ADDRESS, la dirección en que se guardan los datos
+load CERO/11C cargar el vlaor de cero, y ponerselo a todos los datos importantes
+store COUNT/11D Hacer la cuenta cero
+store SUM/11E hacer la suma cero
+store PROM/11F hacer el promedio cero
+jump 100/120 volver a hacer el proceso, pidiendo más datos
+
+COUNT, dec 0/121
+LAST, dec 50/122
+VALUE, dec 0/123
+ONE, dec 1/124
+ADDRESS, hex 200/125
+SUM, dec 0/126
+PROM, dec 0/127
+FIRSTADDRESS, hex 200/128
+CERO, dec 0/129
